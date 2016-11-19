@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ComponentClass : MonoBehaviour {
 
     public bool isCentrePart, isAttachedToCentre;
+    //public List<ViveControllers> handsOnThis = new List<ViveControllers>();
+    public int handsOnThis = 0;
 
 	// Use this for initialization
 	void Start () {

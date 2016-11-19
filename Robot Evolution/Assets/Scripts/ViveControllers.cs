@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ViveControllers : MonoBehaviour
 {
+    private bool debug = true;
+
     private SteamVR_TrackedObject trackedObj;
     private SteamVR_Controller.Device controller { get { return SteamVR_Controller.Input((int)trackedObj.index); } }
 
@@ -10,6 +12,7 @@ public class ViveControllers : MonoBehaviour
     private bool triggerDown, triggerUp, triggerPressed;
 
     private GameObject grabSlot, grabbedObject;
+    private ComponentClass component;
 
     void Start()
     {
@@ -27,7 +30,15 @@ public class ViveControllers : MonoBehaviour
 
         if (triggerDown && grabSlot != null && grabbedObject == null)
         {
+            //we're grabbing this object
             grabbedObject = grabSlot;
+
+            //access its component
+            component = grabbedObject.GetComponent<ComponentClass>();
+            //add yourself to its list
+            component.handsOnThis++;
+
+            //do all the grabbing stuff
             grabbedObject.transform.parent = gameObject.transform;
             grabbedObject.GetComponent<Rigidbody>().useGravity = false;
             grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
@@ -35,10 +46,21 @@ public class ViveControllers : MonoBehaviour
 
         if (triggerUp && grabbedObject != null)
         {
-            grabbedObject.transform.parent = null;
-            grabbedObject.GetComponent<Rigidbody>().useGravity = true;
-            grabbedObject.GetComponent<Rigidbody>().isKinematic = false;
-            grabbedObject = null;
+            if (grabbedObject.GetComponent<ComponentClass>() != null) {
+                component.handsOnThis--;
+                //only make the object drop, if no other hand is holding it anymore
+                if (component.handsOnThis < 1)
+                {
+                    grabbedObject.transform.parent = null;
+                    grabbedObject.GetComponent<Rigidbody>().useGravity = true;
+                    grabbedObject.GetComponent<Rigidbody>().isKinematic = false;
+                }
+
+                //forget about it, man.
+                grabbedObject = null;
+            }
+            else { if (debug) { Debug.LogError("You somehow dropped an object that you couldn't grab in the first place. Well done."); } }
+           
         }
 
         if (triggerPressed && grabbedObject != null)
