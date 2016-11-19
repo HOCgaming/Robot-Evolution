@@ -33,7 +33,7 @@ public class VelcroController : MonoBehaviour
             //if we can connect, try to!
             if (canToggleTrigger)
             {
-                ConnectTo(theirParent, theirComponent);
+                ConnectTo(theirParent, theirComponent, triggeredCollider.gameObject);
             }
             else
             {
@@ -45,7 +45,7 @@ public class VelcroController : MonoBehaviour
     }
 
     //for connecting two components together
-    void ConnectTo(GameObject connectObject, ComponentClass connectComponent)
+    void ConnectTo(GameObject connectObject, ComponentClass connectComponent, GameObject theirVelcro)
     {
         //If I am the core of the robot
         if (myComponent.isCentrePart)
@@ -53,20 +53,20 @@ public class VelcroController : MonoBehaviour
             if (connectComponent.isCentrePart) { if (debug) { Debug.LogError("Yeah, you can't connect two robot centres."); } }
             else {
                 if (connectComponent.isAttachedToSomething) { if (debug) { Debug.LogWarning("You're already attached!"); } }
-                else { VelcroThemToUs(connectObject, connectComponent); }
+                else { VelcroThemToUs(connectObject, connectComponent, theirVelcro); }
             }
         }
         //If I am NOT the core of the robot
         else
         {
-            if (myComponent.isAttachedToSomething && !connectComponent.isCentrePart) { VelcroThemToUs(connectObject, connectComponent); }
+            if (myComponent.isAttachedToSomething && !connectComponent.isCentrePart) { VelcroThemToUs(connectObject, connectComponent, theirVelcro); }
             else { if (debug) { Debug.LogWarning("You can't connect two extra parts together."); } }
         }
 
         
     }
 
-    void VelcroThemToUs(GameObject connectObject, ComponentClass connectComponent)
+    void VelcroThemToUs(GameObject connectObject, ComponentClass connectComponent, GameObject velcro)
     {        
         connectObject.GetComponent<Rigidbody>().useGravity = false;
         connectObject.GetComponent<Rigidbody>().isKinematic = true;
@@ -82,7 +82,21 @@ public class VelcroController : MonoBehaviour
         //when done, clear the hands List
         connectComponent.handsOnThis = new List<ViveControllers>();
 
+        //SnapToCORRECTPosition(connectObject, velcro);
+
         if (debug) { Debug.Log(myObject.name + " has connected " + connectObject.name + " to itself."); }
+    }
+
+    void SnapToCORRECTPosition(GameObject theirObject, GameObject theirVelcro)
+    {
+        theirObject.transform.parent = theirVelcro.transform;
+        
+
+
+
+
+        /* Vector3 theirLocalDiff = theirVelcro.transform.localPosition;
+        theirObject.transform.localPosition = gameObject.transform.localPosition - theirLocalDiff; */
     }
 
     /* void VelcroUsToThem(GameObject connectObject)
