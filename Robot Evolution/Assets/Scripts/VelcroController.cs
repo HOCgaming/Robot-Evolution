@@ -1,71 +1,81 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class VelcroController : MonoBehaviour {
+public class VelcroController : MonoBehaviour
+{
     private bool debug = true;
 
-    private bool toggleCanTrigger = true, inUse = false;
-    public ComponentClass myComponent;
-    private GameObject myGameObject;
+    public bool canToggleTrigger = true, isBeingUsed = false;
+    private GameObject myObject;
+    private ComponentClass myComponent;
 
-	// Use this for initialization
-	void Start () {
-
-        myGameObject = myComponent.gameObject;
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    //when velcros collide...
-    void OnTriggerEnter (Collider triggered)
+    void Start()
     {
-        if (triggered.gameObject.transform.parent != null)
+        //set some states
+        canToggleTrigger = true;
+        isBeingUsed = false;
+
+        //assign stuff
+        myObject = gameObject.transform.parent.gameObject;
+        myComponent = myObject.GetComponent<ComponentClass>();
+    }
+    
+
+    void OnTriggerEnter (Collider triggeredCollider)
+    {
+        if (triggeredCollider.gameObject.tag == "velcroTag")
         {
-            if (triggered.gameObject.transform.parent.gameObject.tag == "componentTag" && triggered.transform.parent.gameObject.GetComponent<ComponentClass>() != null)
+            GameObject theirParent = triggeredCollider.transform.parent.gameObject;
+            ComponentClass theirComponent = theirParent.GetComponent<ComponentClass>();
+
+            if (debug) { Debug.Log("Trying to connect to: " + theirParent.name); }
+            
+            //if we can connect, try to!
+            if (canToggleTrigger && !isBeingUsed)
             {
-                GameObject theirGameObject = triggered.transform.parent.gameObject;
-                ComponentClass theirComponent = theirGameObject.GetComponent<ComponentClass>();
-                if (debug) { Debug.Log("Their gameObject is " + theirGameObject.name); }
-
-                //if it's velcro, and we can attempt to attach, we're not already inUse, and we're not on the same object (just in case)...
-                if (triggered.gameObject.tag == "velcroTag" && toggleCanTrigger && !inUse && myGameObject != theirGameObject)
-                {
-                    if (debug)
-                    {
-                        Debug.LogWarning("Velcros have collided!");
-                        toggleCanTrigger = false;
-
-                        //Now we decide "who to connect to who"
-                        if (myComponent.isCentrePart) //If my part is the centre of the entire robot...
-                        {
-                            if (theirComponent.isCentrePart && debug) { Debug.LogError("BOTH VELCROS ARE ATTACHED TO MAIN PIECES, CAN'T CONNECT"); }
-                            else
-                            {
-                                theirGameObject.GetComponent<Rigidbody>().useGravity = false;
-                                theirGameObject.GetComponent<Rigidbody>().isKinematic = true;
-
-                                theirGameObject.transform.parent = myGameObject.transform;
-                                theirComponent.setAttached(true);
-                            }
-                        }
-
-                    }
-                }
+                ConnectTo(theirParent, theirComponent);
             }
+            else
+            {
+                if(debug) { Debug.Log("Unable to connect to velcro."); }
+            }
+
+            
         }
-        
-        //if colliding trigger has no parent
-        else { if(debug) { Debug.LogWarning("They don't have a parent."); } }       
-        
+    }
+
+    //for connecting two components together
+    void ConnectTo(GameObject connectObject, ComponentClass connectComponent)
+    {
+        //If I am the core of the robot
+        if (myComponent.isCentrePart)
+        {
+            if (connectComponent.isCentrePart) { if (debug) { Debug.LogError("Yeah, you can't connect two robot centres."); } }
+            else { VelcroThemToUs(connectObject, connectComponent); }
+        }
+        //If I am NOT the core of the robot
+        else
+        {
+            if (myComponent.isAttachedToCentre && !connectComponent.isCentrePart) { VelcroThemToUs(connectObject, connectComponent); }
+            else { if (debug) { Debug.LogWarning("You can't connect two extra parts together."); } }
+        }
+
         
     }
 
-    void OnTriggerExit (Collider triggered)
-    {
-        toggleCanTrigger = true;
+    void VelcroThemToUs(GameObject connectObject, ComponentClass connectComponent)
+    {        
+        connectObject.GetComponent<Rigidbody>().useGravity = false;
+        connectObject.GetComponent<Rigidbody>().isKinematic = true;
+        connectObject.transform.parent = myObject.transform;
+        connectComponent.isAttachedToCentre = true;
+        if (debug) { Debug.Log(myObject.name + " has connected " + connectObject.name + " to itself."); }
     }
+
+    /* void VelcroUsToThem(GameObject connectObject)
+    {
+        myObject.GetComponent<Rigidbody>().useGravity = false;
+        myObject.GetComponent<Rigidbody>().isKinematic = true;
+        myObject.transform.parent = connectObject.transform;
+    } */
 }

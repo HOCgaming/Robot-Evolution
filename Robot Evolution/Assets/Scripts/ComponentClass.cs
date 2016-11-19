@@ -3,10 +3,13 @@ using System.Collections;
 
 public class ComponentClass : MonoBehaviour {
 
-    public bool isCentrePart, isAttached = false;
+    public bool isCentrePart, isAttachedToCentre;
 
 	// Use this for initialization
 	void Start () {
+
+        //set some values
+        isAttachedToCentre = false;
 	
 	}
 	
@@ -14,9 +17,4 @@ public class ComponentClass : MonoBehaviour {
 	void Update () {
 	
 	}
-
-    public void setAttached(bool input)
-    {
-        isAttached = input;
-    }
 }
