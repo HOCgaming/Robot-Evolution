@@ -6,7 +6,7 @@ public class EndofLvl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		previousLvl = 1;
+		previousLvl = 2;
 	}
 	
 	// Update is called once per frame
