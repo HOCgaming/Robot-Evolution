@@ -33,7 +33,7 @@ public class VelcroController : MonoBehaviour
             //if we can connect, try to!
             if (canToggleTrigger)
             {
-                ConnectTo(theirParent, theirComponent);
+                ConnectTo(theirParent, theirComponent, triggeredCollider);
             }
             else
             {
@@ -45,7 +45,7 @@ public class VelcroController : MonoBehaviour
     }
 
     //for connecting two components together
-    void ConnectTo(GameObject connectObject, ComponentClass connectComponent)
+    void ConnectTo(GameObject connectObject, ComponentClass connectComponent, Collider triggeredCollider)
     {
         //If I am the core of the robot
         if (myComponent.isCentrePart)
@@ -60,7 +60,10 @@ public class VelcroController : MonoBehaviour
         else
         {
             if (myComponent.isAttachedToSomething && !connectComponent.isCentrePart) { VelcroThemToUs(connectObject, connectComponent); }
-            else { if (debug) { Debug.LogWarning("You can't connect two extra parts together."); } }
+            else {
+                if (debug) { Debug.LogWarning("You can't connect two extra parts together."); }
+                StartCoroutine(FlashVelcroRed(triggeredCollider, 2));
+            }
         }
 
         
@@ -92,5 +95,17 @@ public class VelcroController : MonoBehaviour
         myObject.transform.parent = connectObject.transform;
     } */
 
-    
+    private IEnumerator FlashVelcroRed(Collider collider, float seconds)
+    {
+        Material currentMaterial = collider.gameObject.GetComponent<Renderer>().material;
+        Material myMaterial = gameObject.GetComponent<Renderer>().material;
+
+        collider.gameObject.GetComponent<Renderer>().material.color = Color.red;
+        gameObject.GetComponent<Renderer>().material.color = Color.red;        
+
+        yield return new WaitForSeconds(seconds);
+
+        collider.gameObject.GetComponent<Renderer>().material = currentMaterial;
+        gameObject.GetComponent<Renderer>().material = myMaterial;
+    }
 }
