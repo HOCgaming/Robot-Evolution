@@ -14,7 +14,7 @@ public class Level1 : MonoBehaviour {
 	}
 	public void FirstLvl(float x) {
 
-		if ((gameObject.transform.position.y < -4.071f) && (gameObject.transform.position.y >= -4.575)) {
+		if ((gameObject.transform.position.y < -4f) && (gameObject.transform.position.y >= -4.5f)) {
 			transform.Translate (0f, x, 0f);
 		}
 	}

@@ -16,7 +16,7 @@ public class CraftinPillars : MonoBehaviour {
 
 	public void pillarUp(float x){
 		
-		if ((gameObject.transform.position.y < 0.05f) && (gameObject.transform.position.y >= -0.13f)){
+		if ((gameObject.transform.position.y < 0.108f) && (gameObject.transform.position.y >= -0.481f)){
 			transform.Translate (0f, x, 0f);
 		}
 	}
