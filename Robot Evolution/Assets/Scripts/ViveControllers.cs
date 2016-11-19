@@ -78,6 +78,20 @@ public class ViveControllers : MonoBehaviour
         grabSlot = null;
     }
 
+    GameObject getObjectToGrab(GameObject grabSlot)
+    {
+        if (grabSlot.GetComponent<ComponentClass>().isAttachedToSomething)
+        {
+            if (grabSlot.transform.root.gameObject.GetComponent<ComponentClass>() != null && grabSlot.transform.root.gameObject.GetComponent<ComponentClass>().isCentrePart)
+            {
+                return grabSlot.transform.root.gameObject;
+            }
+        }
+
+        return grabSlot;
+    }
+
+    /*
     //find the object that's highest up the hierarchy, that can be grabbed.
     GameObject getObjectToGrab(GameObject grabSlot)
     {
@@ -97,5 +111,5 @@ public class ViveControllers : MonoBehaviour
 
         //hopefully return the ancestor of grabbbing sometFioaWGaWGwagHHFAIOWFHIAUFWH *cough*
         return saveObj.gameObject;
-    }
+    } */
 }
