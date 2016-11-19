@@ -32,7 +32,7 @@ public class ViveControllers : MonoBehaviour
         if (triggerDown && grabSlot != null && grabbedObject == null)
         {
             //we're grabbing this object
-            grabbedObject = grabSlot;
+            grabbedObject = getObjectToGrab(grabSlot);
 
             //access its component
             component = grabbedObject.GetComponent<ComponentClass>();
@@ -70,11 +70,32 @@ public class ViveControllers : MonoBehaviour
     {
         if (objectCollider.gameObject.tag == "grabbableTag")
         {
-            grabSlot = objectCollider.transform.root.gameObject;
+            grabSlot = objectCollider.gameObject;
         }
     }
     void OnTriggerExit(Collider objectCollider)
     {
         grabSlot = null;
+    }
+
+    //find the object that's highest up the hierarchy, that can be grabbed.
+    GameObject getObjectToGrab(GameObject grabSlot)
+    {
+        //save the current grabSlot
+        Transform saveObj = grabSlot.transform;
+
+        //while there is still another object higher in the hierarchy...
+        while (saveObj.transform.parent != null)
+        {
+            //look at the parent, is it grabbable? If so, save it and check ITS parent.
+            Transform parentOfSave = saveObj.transform.parent;
+            if (parentOfSave.gameObject.tag == "grabbable")
+            {
+                saveObj = parentOfSave;
+            }
+        }
+
+        //hopefully return the ancestor of grabbbing sometFioaWGaWGwagHHFAIOWFHIAUFWH *cough*
+        return saveObj.gameObject;
     }
 }
