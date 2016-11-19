@@ -11,7 +11,8 @@ public class ViveControllers : MonoBehaviour
     private Valve.VR.EVRButtonId trigger = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
     private bool triggerDown, triggerUp, triggerPressed;
 
-    private GameObject grabSlot, grabbedObject;
+    private GameObject grabSlot;
+    public GameObject grabbedObject;
     private ComponentClass component;
 
     void Start()
@@ -36,7 +37,7 @@ public class ViveControllers : MonoBehaviour
             //access its component
             component = grabbedObject.GetComponent<ComponentClass>();
             //add yourself to its list
-            component.handsOnThis++;
+            component.handsOnThis.Add(gameObject.GetComponent<ViveControllers>());
 
             //do all the grabbing stuff
             grabbedObject.transform.parent = gameObject.transform;
@@ -47,9 +48,9 @@ public class ViveControllers : MonoBehaviour
         if (triggerUp && grabbedObject != null)
         {
             if (grabbedObject.GetComponent<ComponentClass>() != null) {
-                component.handsOnThis--;
+                component.handsOnThis.Remove(gameObject.GetComponent<ViveControllers>());
                 //only make the object drop, if no other hand is holding it anymore
-                if (component.handsOnThis < 1)
+                if (component.handsOnThis.Count < 1)
                 {
                     grabbedObject.transform.parent = null;
                     grabbedObject.GetComponent<Rigidbody>().useGravity = true;
@@ -63,17 +64,13 @@ public class ViveControllers : MonoBehaviour
            
         }
 
-        if (triggerPressed && grabbedObject != null)
-        {
-
-        }
     }
 
     void OnTriggerEnter(Collider objectCollider)
     {
         if (objectCollider.gameObject.tag == "grabbableTag")
         {
-            grabSlot = objectCollider.gameObject;
+            grabSlot = objectCollider.transform.root.gameObject;
         }
     }
     void OnTriggerExit(Collider objectCollider)
