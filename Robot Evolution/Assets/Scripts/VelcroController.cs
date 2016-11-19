@@ -82,18 +82,22 @@ public class VelcroController : MonoBehaviour
         //when done, clear the hands List
         connectComponent.handsOnThis = new List<ViveControllers>();
 
-        //SnapToCORRECTPosition(connectObject, velcro);
+        SnapToCORRECTPosition(connectObject, velcro);
 
         if (debug) { Debug.Log(myObject.name + " has connected " + connectObject.name + " to itself."); }
     }
 
     void SnapToCORRECTPosition(GameObject theirObject, GameObject theirVelcro)
     {
+        theirVelcro.transform.parent = null;
         theirObject.transform.parent = theirVelcro.transform;
-        
+        if (debug) { Debug.LogWarning(theirVelcro.name + " " + theirObject.transform.parent.name); }
 
+        theirVelcro.transform.position = gameObject.transform.position;
+        theirVelcro.transform.up = -gameObject.transform.up;
 
-
+        theirObject.transform.parent = myObject.transform;
+        theirVelcro.transform.parent = theirObject.transform;
 
         /* Vector3 theirLocalDiff = theirVelcro.transform.localPosition;
         theirObject.transform.localPosition = gameObject.transform.localPosition - theirLocalDiff; */
