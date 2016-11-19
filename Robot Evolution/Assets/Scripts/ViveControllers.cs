@@ -33,6 +33,7 @@ public class ViveControllers : MonoBehaviour
         {
             //we're grabbing this object
             grabbedObject = getObjectToGrab(grabSlot);
+            if (debug) { Debug.Log("Grabbed: " + grabbedObject.name); }
 
             //access its component
             component = grabbedObject.GetComponent<ComponentClass>();
@@ -82,34 +83,15 @@ public class ViveControllers : MonoBehaviour
     {
         if (grabSlot.GetComponent<ComponentClass>().isAttachedToSomething)
         {
-            if (grabSlot.transform.root.gameObject.GetComponent<ComponentClass>() != null && grabSlot.transform.root.gameObject.GetComponent<ComponentClass>().isCentrePart)
-            {
-                return grabSlot.transform.root.gameObject;
-            }
+            if (debug) { Debug.Log("Returned Robot Centre"); }
+            return GlobalReferences.RobotCentre;
+            
+        } else
+        {
+            if (debug) { Debug.Log("Returned Grab Slot"); }
+            return grabSlot;
         }
-
-        return grabSlot;
+        
     }
 
-    /*
-    //find the object that's highest up the hierarchy, that can be grabbed.
-    GameObject getObjectToGrab(GameObject grabSlot)
-    {
-        //save the current grabSlot
-        Transform saveObj = grabSlot.transform;
-
-        //while there is still another object higher in the hierarchy...
-        while (saveObj.transform.parent != null)
-        {
-            //look at the parent, is it grabbable? If so, save it and check ITS parent.
-            Transform parentOfSave = saveObj.transform.parent;
-            if (parentOfSave.gameObject.tag == "grabbable")
-            {
-                saveObj = parentOfSave;
-            }
-        }
-
-        //hopefully return the ancestor of grabbbing sometFioaWGaWGwagHHFAIOWFHIAUFWH *cough*
-        return saveObj.gameObject;
-    } */
 }
