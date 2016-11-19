@@ -5,7 +5,7 @@ public class VelcroController : MonoBehaviour
 {
     private bool debug = true;
 
-    public bool canToggleTrigger = true, isBeingUsed = false;
+    public bool canToggleTrigger = true;
     private GameObject myObject;
     private ComponentClass myComponent;
 
@@ -13,7 +13,6 @@ public class VelcroController : MonoBehaviour
     {
         //set some states
         canToggleTrigger = true;
-        isBeingUsed = false;
 
         //assign stuff
         myObject = gameObject.transform.parent.gameObject;
@@ -31,7 +30,7 @@ public class VelcroController : MonoBehaviour
             if (debug) { Debug.Log("Trying to connect to: " + theirParent.name); }
             
             //if we can connect, try to!
-            if (canToggleTrigger && !isBeingUsed)
+            if (canToggleTrigger)
             {
                 ConnectTo(theirParent, theirComponent);
             }
@@ -51,7 +50,10 @@ public class VelcroController : MonoBehaviour
         if (myComponent.isCentrePart)
         {
             if (connectComponent.isCentrePart) { if (debug) { Debug.LogError("Yeah, you can't connect two robot centres."); } }
-            else { VelcroThemToUs(connectObject, connectComponent); }
+            else {
+                if (connectComponent.isAttachedToCentre) { if (debug) { Debug.LogWarning("You're already attached!"); } }
+                else { VelcroThemToUs(connectObject, connectComponent); }
+            }
         }
         //If I am NOT the core of the robot
         else
@@ -78,4 +80,6 @@ public class VelcroController : MonoBehaviour
         myObject.GetComponent<Rigidbody>().isKinematic = true;
         myObject.transform.parent = connectObject.transform;
     } */
+
+    
 }

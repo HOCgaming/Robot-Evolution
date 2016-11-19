@@ -15,6 +15,14 @@ public class ComponentClass : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
+
+    void DisconnectThisObject()
+    {
+        gameObject.GetComponent<Rigidbody>().useGravity = true;
+        gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        gameObject.transform.parent = null;
+        isAttachedToCentre = false;
+    }
 }
