@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\ComponentClass.cs" />
     <Compile Include="Assets\Scripts\ExampleScript.cs" />
+    <Compile Include="Assets\Scripts\GlobalReferences.cs" />
     <Compile Include="Assets\Scripts\VelcroController.cs" />
     <Compile Include="Assets\Scripts\ViveControllers.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />

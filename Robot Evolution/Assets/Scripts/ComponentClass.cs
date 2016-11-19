@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class ComponentClass : MonoBehaviour {
+    private bool debug = true;
 
     public bool isCentrePart, isAttachedToSomething;
     public List<ViveControllers> handsOnThis = new List<ViveControllers>();
@@ -13,6 +14,12 @@ public class ComponentClass : MonoBehaviour {
 
         //set some values
         isAttachedToSomething = false;
+
+        if (isCentrePart)
+        {
+            GlobalReferences.RobotCentre = gameObject;
+            if (debug) { Debug.Log("References now contains the RobotCentre"); }
+        }
 	
 	}
 	
@@ -21,11 +28,12 @@ public class ComponentClass : MonoBehaviour {
 
 	}
 
+    /*
     void DisconnectThisObject()
     {
         gameObject.GetComponent<Rigidbody>().useGravity = true;
         gameObject.GetComponent<Rigidbody>().isKinematic = false;
         gameObject.transform.parent = null;
         isAttachedToSomething = false;
-    }
+    } */
 }
