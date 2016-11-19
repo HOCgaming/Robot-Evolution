@@ -16,7 +16,7 @@ public class Main : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		PillarUp = true; 
+		PillarUp = true;
 	}
 
 
