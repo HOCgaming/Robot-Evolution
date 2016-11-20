@@ -51,7 +51,10 @@ public class ViveControllers : MonoBehaviour
 
     private void CheckRespawnCube()
     {
-        if (touchDown) { GlobalReferences.RobotCentre.transform.position = new Vector3(-6f, 2f, -2.9f); }
+        if (touchDown) { 
+			GlobalReferences.RobotCentre.transform.position = new Vector3(-6.3f, 2f, -2.9f); 
+			GlobalReferences.RobotCentre.GetComponent<Rigidbody> ().velocity = Vector3.zero;
+		}
     }
 
 

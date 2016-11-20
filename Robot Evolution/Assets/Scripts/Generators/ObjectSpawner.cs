@@ -16,6 +16,13 @@ public class ObjectSpawner : MonoBehaviour {
     {
         GameObject newObject = Instantiate(inputObject);
         newObject.transform.position = spawnPositions[id].transform.position;
+
+		if (newObject.GetComponent<Rigidbody> () == null) {
+			newObject.AddComponent<Rigidbody> ();
+		}
+
+		newObject.GetComponent<Rigidbody> ().useGravity = true;
+		newObject.GetComponent<Rigidbody> ().isKinematic = false;
     }
 
     void Update()
