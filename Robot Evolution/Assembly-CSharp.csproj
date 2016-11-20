@@ -60,7 +60,6 @@
      <Compile Include="Assets\Scripts\Level2.cs" />
      <Compile Include="Assets\Scripts\Level3.cs" />
      <Compile Include="Assets\Scripts\Level4.cs" />
-     <Compile Include="Assets\Scripts\Main.cs" />
      <Compile Include="Assets\Scripts\Platform2.cs" />
      <Compile Include="Assets\Scripts\VelcroController.cs" />
      <Compile Include="Assets\Scripts\ViveControllers.cs" />
