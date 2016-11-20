@@ -13,7 +13,6 @@ public class Level1 : MonoBehaviour {
 	
 	}
 	public void FirstLvl(float x) {
-
 		if ((gameObject.transform.position.y <= -8.147f) && (gameObject.transform.position.y >= -9f)) {
 			transform.Translate (0f, x, 0f);
 		}

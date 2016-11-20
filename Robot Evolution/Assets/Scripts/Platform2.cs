@@ -4,7 +4,7 @@ using System.Collections;
 public class Platform2 : MonoBehaviour {
 
 	public Button button;
-	private bool reachedMaxHeight;
+	private bool reachedMaxHeight;	
 	private bool enabled;
 
 	// Use this for initialization
@@ -46,11 +46,11 @@ public class Platform2 : MonoBehaviour {
 			}
 		}
 
-		if (gameObject.transform.position.y >= 0.45) {
+		if (gameObject.transform.position.y >= 0.45f) {
 			reachedMaxHeight = true;
 		}
 
-		if (gameObject.transform.position.y <= 0.01) {
+		if (gameObject.transform.position.y <= 0.01f) {
 			reachedMaxHeight = false;
 			enabled = false;
 		}
