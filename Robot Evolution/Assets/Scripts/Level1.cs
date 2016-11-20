@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Level1 : MonoBehaviour {
 
+    int thisInt = 1;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -10,6 +12,8 @@ public class Level1 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if(thisInt == 1) { FirstLvl(0.05f); }
 	
 	}
 	public void FirstLvl(float x) {
