@@ -6,7 +6,7 @@ using System.Collections;
 
 	// Use this for initialization
 	void Start () {
-		previousLvl = 4;
+		previousLvl = 3;
 	}
 	
 	// Update is called once per frame
