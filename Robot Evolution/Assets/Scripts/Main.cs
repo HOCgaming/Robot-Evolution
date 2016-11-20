@@ -29,11 +29,11 @@ public class Main : MonoBehaviour {
 		if (!PillarUp)
 			pillarscript.pillarUp(-0.01f);
 		if (currentLvl == "Lvl1")
-			lvl1script.FirstLvl(0.05f);
+			lvl1script.FirstLvl(0.03f);
 		if (currentLvl != "Lvl1")
 			lvl1script.FirstLvl(-0.1f);
 		if (currentLvl == "Lvl2")
-			lvl2script.SecondLvl (0.05f);
+			lvl2script.SecondLvl (0.03f);
 		if (currentLvl != "Lvl2")
 			lvl2script.SecondLvl(-0.1f);
 		
