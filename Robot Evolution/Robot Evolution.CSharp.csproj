@@ -69,6 +69,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Behaviour\CoptorBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behaviour\WheelBehaviour.cs" />
     <Compile Include="Assets\Scripts\Button.cs" />
     <Compile Include="Assets\Scripts\ComponentClass.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Assets\Scripts\ExampleScript.cs" />
     <Compile Include="Assets\Scripts\Gate.cs" />
     <Compile Include="Assets\Scripts\Generators\ObjectGenerator.cs" />
+    <Compile Include="Assets\Scripts\Generators\ObjectSpawner.cs" />
     <Compile Include="Assets\Scripts\GlobalReferences.cs" />
     <Compile Include="Assets\Scripts\LaserDoor.cs" />
     <Compile Include="Assets\Scripts\Level1.cs" />
