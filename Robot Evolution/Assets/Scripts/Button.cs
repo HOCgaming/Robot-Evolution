@@ -18,6 +18,8 @@ public class Button : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision activate){
+		
+		Debug.Log ("booom");
 		if (currentLvl.Next () == "Lvl2")
 			x = 2;
 	}
