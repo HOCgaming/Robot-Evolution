@@ -15,7 +15,7 @@ public class Level2 : MonoBehaviour {
 
 	public void SecondLvl(float x) {
 
-		if ((gameObject.transform.position.y <= 0f) && (gameObject.transform.position.y >= -2f)) {
+		if ((gameObject.transform.position.y <= 0f) && (gameObject.transform.position.y >= -4f)) {
 			transform.Translate (0f, x, 0f);
 		}
 	}
