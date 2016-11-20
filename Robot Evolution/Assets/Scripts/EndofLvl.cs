@@ -8,6 +8,7 @@ using System.Collections;
 	public Level3 lvl3script;
 	public Level4 lvl4script;
 	public bool PillarUp; 
+	public bool callToggle;
 	public CraftinPillars pillarscript;
 
 
@@ -15,6 +16,7 @@ using System.Collections;
 	void Start () {
 		PillarUp = true;
 		currentLvl = 1;
+		callToggle = true;
 	}
 
 
@@ -84,12 +86,23 @@ using System.Collections;
 
 	void OnCollisionEnter(Collision activate) 
 	{
-		currentLvl++;
+		if (callToggle == true) {
+			currentLvl++;
+			callToggle = false;
+			StartCoroutine (resetToggle ());
+			GlobalReferences.RobotCentre.transform.position = new Vector3(-6.3f, 2f, -2.9f); 
+			GlobalReferences.RobotCentre.GetComponent<Rigidbody> ().velocity = Vector3.zero;
+		}
 	}
 
 	public int Next()
 	{
 		return currentLvl;
+	}
+
+	private IEnumerator resetToggle() {
+		yield return new WaitForSeconds (1.0f);
+		callToggle = true;
 	}
 		
 }
