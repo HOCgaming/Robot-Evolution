@@ -4,8 +4,10 @@ using System.Collections.Generic;
 
 public class ComponentClass : MonoBehaviour {
     private bool debug = true;
+    public ObjectSpawner monoGenerator;
+    public int id;
 
-    public bool isCentrePart, isAttachedToSomething;
+    public bool isCentrePart, isAttachedToSomething, beenPickedUp;
     public List<ViveControllers> handsOnThis = new List<ViveControllers>();
     //public int handsOnThis = 0;
 
@@ -14,6 +16,7 @@ public class ComponentClass : MonoBehaviour {
 
         //set some values
         isAttachedToSomething = false;
+        beenPickedUp = false;
 
         if (isCentrePart)
         {
@@ -25,8 +28,22 @@ public class ComponentClass : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        if (Input.GetKeyDown(KeyCode.Space)) { ReplaceMe(); }
 	}
+
+    public void ReplaceMe() {
+        if(debug)
+        {
+            Debug.LogWarning("TRYING TO SPAWN NEW " + gameObject.name);
+        }
+        if (!beenPickedUp && !isCentrePart)
+        {
+            monoGenerator.spawnNewMe(gameObject, id);
+            beenPickedUp = true;
+            
+        }
+        
+    }
 
     /*
     void DisconnectThisObject()

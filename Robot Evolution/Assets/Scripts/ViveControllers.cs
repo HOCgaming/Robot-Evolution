@@ -132,6 +132,8 @@ public class ViveControllers : MonoBehaviour
 				grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
 			}
 
+            component.ReplaceMe();
+
 		}
 	}
 	/*
