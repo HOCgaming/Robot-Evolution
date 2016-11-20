@@ -18,6 +18,9 @@ public class ViveControllers : MonoBehaviour
     public GameObject grabbedObject;
     private ComponentClass component;
 
+    [SerializeField] private Vector3[] controllerPositions = new Vector3[5];
+    [SerializeField] private Vector3 controllerVelocity;
+
     void Start()
     {
 
@@ -32,8 +35,9 @@ public class ViveControllers : MonoBehaviour
 
         CheckDisconnectComponents();
         CheckGrabThings();
-        CheckDropThings();       
-        
+        CheckDropThings();
+
+        ControllerVelocity();        
 
     }
 
@@ -102,6 +106,7 @@ public class ViveControllers : MonoBehaviour
         }
     }
 
+    //FOR DROPPING THINGS
     private void CheckDropThings()
     {
         if (triggerUp && grabbedObject != null)
@@ -117,12 +122,25 @@ public class ViveControllers : MonoBehaviour
                     grabbedObject.GetComponent<Rigidbody>().isKinematic = false;
                 }
 
+                //inherit velocity...????
+                grabbedObject.GetComponent<Rigidbody>().velocity = controllerVelocity;
                 //forget about it, man.
                 grabbedObject = null;
             }
             else { if (debug) { Debug.LogError("You somehow dropped an object that you couldn't grab in the first place. Well done."); } }
 
         }
+    }
+
+    //use the difference in recent positions, to find out what its velocity should be now.
+    private void ControllerVelocity()
+    {
+        for (int i = 0; i < controllerPositions.Length - 1; i++) {
+            controllerPositions[i] = controllerPositions[i + 1];
+        }
+        controllerPositions[controllerPositions.Length - 1] = gameObject.transform.position;
+
+        controllerVelocity = controllerPositions[controllerPositions.Length - 1] - controllerPositions[0];
     }
 
     /*

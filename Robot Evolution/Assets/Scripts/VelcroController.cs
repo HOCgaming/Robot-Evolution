@@ -89,7 +89,31 @@ public class VelcroController : MonoBehaviour
 
     void SnapToCORRECTPosition(GameObject theirObject, GameObject theirVelcro)
     {
-        theirVelcro.transform.parent = null;
+        if (debug) { Debug.Log("Oops"); }
+
+
+        //ur a nerd
+
+
+        /* GameObject fakeVelcro = new GameObject("FakeVelcro");
+        GameObject fakeObject = new GameObject("FakeCube");
+
+        fakeVelcro.transform.position = theirVelcro.transform.position;
+        fakeVelcro.transform.rotation = theirVelcro.transform.rotation;
+        fakeObject.transform.position = theirObject.transform.position;
+        fakeObject.transform.rotation = theirObject.transform.rotation;
+
+        fakeObject.transform.parent = fakeVelcro.transform;
+
+        fakeVelcro.transform.position = gameObject.transform.position;
+        fakeVelcro.transform.up = -gameObject.transform.up;
+
+        theirObject.transform.position = fakeObject.transform.position;
+        theirObject.transform.rotation = fakeObject.transform.rotation;
+
+        Destroy(fakeVelcro); */
+
+        /* theirVelcro.transform.parent = null;
         theirObject.transform.parent = theirVelcro.transform;
         if (debug) { Debug.LogWarning(theirVelcro.name + " " + theirObject.transform.parent.name); }
 
@@ -97,7 +121,7 @@ public class VelcroController : MonoBehaviour
         theirVelcro.transform.up = -gameObject.transform.up;
 
         theirObject.transform.parent = myObject.transform;
-        theirVelcro.transform.parent = theirObject.transform;
+        theirVelcro.transform.parent = theirObject.transform; */
 
         /* Vector3 theirLocalDiff = theirVelcro.transform.localPosition;
         theirObject.transform.localPosition = gameObject.transform.localPosition - theirLocalDiff; */
