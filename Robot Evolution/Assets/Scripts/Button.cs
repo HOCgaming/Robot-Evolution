@@ -36,6 +36,15 @@ public class Button : MonoBehaviour {
 			x = 3;
 	}
 
+	void OnTriggerEnter(Collider triggerBOOM) {
+		Debug.Log ("BOOM MUTHAFUCKA");
+		counterTime = true;
+		if (currentLvl.Next () == "Lvl2")
+			x = 2;
+		if (currentLvl.Next () == "Lvl3")
+			x = 3;
+	}
+
 	public int Activate(){
 		return x;
 	}
