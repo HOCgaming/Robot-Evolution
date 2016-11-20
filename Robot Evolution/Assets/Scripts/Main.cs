@@ -26,6 +26,7 @@ public class Main : MonoBehaviour {
 	void Update () 
 	{
 		currentLvl = newLvl.Next();
+        Debug.Log(currentLvl);
 		if (PillarUp)	
 			pillarscript.pillarUp(0.008f);
 		if (!PillarUp)

@@ -3,10 +3,11 @@ using System.Collections;
 
 	public class EndofLvl : MonoBehaviour {
 	public int previousLvl;
+    private Vector3 startPos = new Vector3(-6.3f, 2f, -2.9f);
 
 	// Use this for initialization
 	void Start () {
-		previousLvl = 3;
+		previousLvl = 2;
 	}
 	
 	// Update is called once per frame
@@ -16,9 +17,18 @@ using System.Collections;
 
 	void OnCollisionEnter(Collision activate) 
 	{
-		previousLvl++;
+        if (activate.gameObject.tag == "grabbableTag")
+        {
+            previousLvl++;
+            BackToStart();
+        }
+		
 	}
 
+    public void BackToStart()
+    {
+        GlobalReferences.RobotCentre.transform.position = startPos;
+    }
 
 
 	public string Next()
