@@ -11,39 +11,35 @@ public class WheelBehaviour : MonoBehaviour {
     
 	void Start () {
         rotateAxis = gameObject.transform.forward;
-        forceFactor = 50;
-		torqueFactor = 20;
+        forceFactor = 5;
+		torqueFactor = 5;
 		wheelFactor = 20;
         myComponent = gameObject.GetComponent<ComponentClass>();
 	}
 	
 	void FixedUpdate () {
 
-		if (myComponent.isAttachedToSomething && Input.GetKey(KeyCode.W))
-		{
-			gameObject.transform.Rotate(rotateAxis, Time.deltaTime * wheelFactor);
-			GlobalReferences.RobotCentre.GetComponent<Rigidbody>().AddForce(GlobalReferences.RobotCentre.transform.up * forceFactor);
-		}	
 		if (myComponent.isAttachedToSomething && Input.GetKey(KeyCode.A))
 		{
-			gameObject.transform.Rotate(rotateAxis, Time.deltaTime * wheelFactor);
-			GlobalReferences.RobotCentre.GetComponent<Rigidbody>().AddForce(GlobalReferences.RobotCentre.transform.up * -forceFactor);
+			//gameObject.transform.Rotate(rotateAxis, Time.deltaTime * wheelFactor);
+			GlobalReferences.RobotCentre.GetComponent<Rigidbody>().AddTorque(Vector3.up * torqueFactor);
+		}	
+		if (myComponent.isAttachedToSomething && Input.GetKey(KeyCode.W))
+		{
+			//gameObject.transform.Rotate(rotateAxis, Time.deltaTime * wheelFactor);
+			GlobalReferences.RobotCentre.GetComponent<Rigidbody>().AddTorque(GlobalReferences.RobotCentre.transform.forward * forceFactor);
+		}	
+		if (myComponent.isAttachedToSomething && Input.GetKey(KeyCode.D))
+		{
+			//gameObject.transform.Rotate(rotateAxis, Time.deltaTime * wheelFactor);
+			GlobalReferences.RobotCentre.GetComponent<Rigidbody>().AddTorque(Vector3.up * -torqueFactor);
 		}	
 		if (myComponent.isAttachedToSomething && Input.GetKey(KeyCode.S))
 		{
-			gameObject.transform.Rotate(rotateAxis, Time.deltaTime * wheelFactor);
-			GlobalReferences.RobotCentre.GetComponent<Rigidbody>().AddTorque(GlobalReferences.RobotCentre.transform.up * torqueFactor);
+			//gameObject.transform.Rotate(rotateAxis, Time.deltaTime * wheelFactor);
+			GlobalReferences.RobotCentre.GetComponent<Rigidbody>().AddTorque(GlobalReferences.RobotCentre.transform.forward * -forceFactor);
 		}	
-		if (myComponent.isAttachedToSomething && Input.GetKey(KeyCode.D))
-		{
-			gameObject.transform.Rotate(rotateAxis, Time.deltaTime * wheelFactor);
-			GlobalReferences.RobotCentre.GetComponent<Rigidbody>().AddTorque(GlobalReferences.RobotCentre.transform.up * -torqueFactor);
-		}	
-		if (myComponent.isAttachedToSomething && Input.GetKey(KeyCode.D))
-		{
-			gameObject.transform.Rotate(rotateAxis, Time.deltaTime * wheelFactor);
-			GlobalReferences.RobotCentre.GetComponent<Rigidbody>().AddTorque(GlobalReferences.RobotCentre.transform.up * -torqueFactor);
-		}	
+
 		if (Input.GetMouseButton (0))  // left click
 		{
 
