@@ -16,11 +16,11 @@ public class Door : MonoBehaviour {
 	
 	}
 
-	public bool Open(){
-		if (x)
-			return true;
-		else
-			return false;
-	}
+	//public bool Open(){
+	//	if (x)
+	//		return true;
+	//	else
+//			return false;
+//	}
 
 }
