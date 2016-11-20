@@ -69,13 +69,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Button.cs" />
     <Compile Include="Assets\Scripts\ComponentClass.cs" />
     <Compile Include="Assets\Scripts\CraftinPillars.cs" />
     <Compile Include="Assets\Scripts\EndofLvl.cs" />
     <Compile Include="Assets\Scripts\ExampleScript.cs" />
     <Compile Include="Assets\Scripts\GlobalReferences.cs" />
     <Compile Include="Assets\Scripts\Level1.cs" />
+    <Compile Include="Assets\Scripts\Level2.cs" />
     <Compile Include="Assets\Scripts\Main.cs" />
+    <Compile Include="Assets\Scripts\Platform2.cs" />
     <Compile Include="Assets\Scripts\VelcroController.cs" />
     <Compile Include="Assets\Scripts\ViveControllers.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
