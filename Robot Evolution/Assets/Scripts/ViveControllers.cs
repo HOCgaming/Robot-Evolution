@@ -18,6 +18,8 @@ public class ViveControllers : MonoBehaviour
     public GameObject grabbedObject;
     private ComponentClass component;
 
+	private Vector3 v3Velocity;
+
     void Start()
     {
 
@@ -67,8 +69,18 @@ public class ViveControllers : MonoBehaviour
             {
                 componentChildren[i].isAttachedToSomething = false;
                 componentChildren[i].transform.parent = null;
-                componentChildren[i].gameObject.GetComponent<Rigidbody>().useGravity = true;
-                componentChildren[i].gameObject.GetComponent<Rigidbody>().isKinematic = false;
+				if (componentChildren[i].gameObject.GetComponent<Rigidbody> () != null) {
+					componentChildren[i].gameObject.GetComponent<Rigidbody>().useGravity = true;
+					componentChildren[i].gameObject.GetComponent<Rigidbody>().isKinematic = false;
+				} else {
+					if (debug) {
+						Debug.LogWarning (componentChildren[i].gameObject.name + " does not have a rigidbody!");
+						Debug.LogWarning ("Giving " + componentChildren[i].gameObject.name + " a rigidbody!");
+					}
+					componentChildren[i].gameObject.AddComponent<Rigidbody>();
+					componentChildren[i].gameObject.GetComponent<Rigidbody>().useGravity = true;
+					componentChildren[i].gameObject.GetComponent<Rigidbody>().isKinematic = false;
+				}
             }
             grabbedObject.GetComponent<ComponentClass>().isAttachedToSomething = false;
             grabbedObject.GetComponent<Rigidbody>().useGravity = true;
@@ -97,10 +109,32 @@ public class ViveControllers : MonoBehaviour
 
             //do all the grabbing stuff
             grabbedObject.transform.parent = gameObject.transform;
-            grabbedObject.GetComponent<Rigidbody>().useGravity = false;
-            grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
+
+			if (grabbedObject.GetComponent<Rigidbody> () != null) {
+				grabbedObject.GetComponent<Rigidbody>().useGravity = false;
+				grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
+			} else {
+				if (debug) {
+					Debug.LogWarning (grabbedObject.name + " does not have a rigidbody!");
+					Debug.LogWarning ("Giving " + grabbedObject.name + " a rigidbody!");
+				}
+				grabbedObject.AddComponent<Rigidbody>();
+				grabbedObject.GetComponent<Rigidbody>().useGravity = false;
+				grabbedObject.GetComponent<Rigidbody>().isKinematic = true;
+			}
+            
         }
     }
+
+	private void jamieGetVelocityShizzle(GameObject inputObject)
+	{
+		v3Velocity = inputObject.GetComponent<Rigidbody>().velocity; 
+	}
+
+	private void jamieSetVelocityShizzle(GameObject inputObject)
+	{
+		inputObject.GetComponent<Rigidbody>().velocity = v3Velocity; // = inputObject.GetComponent<Rigidbody>().velocity; 
+	}
 
     private void CheckDropThings()
     {
@@ -112,9 +146,11 @@ public class ViveControllers : MonoBehaviour
                 //only make the object drop, if no other hand is holding it anymore
                 if (component.handsOnThis.Count < 1)
                 {
+					//jamieGetVelocityShizzle (gameObject);
                     grabbedObject.transform.parent = null;
                     grabbedObject.GetComponent<Rigidbody>().useGravity = true;
                     grabbedObject.GetComponent<Rigidbody>().isKinematic = false;
+					jamieSetVelocityShizzle (grabbedObject);
                 }
 
                 //forget about it, man.
