@@ -4,43 +4,60 @@ using System.Collections;
 public class Platform2 : MonoBehaviour {
 
 	public Button button;
-	public bool MaxHeight;
-	public bool deactivate;
+	private bool reachedMaxHeight;
+	private bool enabled;
 
 	// Use this for initialization
 	void Start () {
-		MaxHeight = false;
-		deactivate = false;
+		reachedMaxHeight = false;
+		enabled = false;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		Debug.Log (button.Activate ());
-
+		/*
 		if (gameObject.transform.position.y >= 0.43f) {
 			MaxHeight = true;
-		} 
-		if ((button.Activate() == 2) && (!MaxHeight)) {
-			transform.Translate (0f, 0.001f, 0f);
 		}
-		if (MaxHeight && gameObject.transform.position.y >= 0.01) {
+		if ((button.Activate () == 2) && (!MaxHeight)) {
+			Debug.Log (button.Activate ());
+			transform.Translate (0f, 0.005f, 0f);
+		}
+		if (MaxHeight && gameObject.transform.position.y >= 0.035) {
 			transform.Translate (0f, -0.01f, 0f);
-			if (gameObject.transform.position.y <= 0.01)
-				deactivate = true;
-				
-				
+		}
+		*/
+		if (enabled == false) {
+			if (button.Activate () == 2) {
+				enabled = true;
+			}
+		}
+
+		if (enabled == true) {
+			if (reachedMaxHeight == false) 
+			{
+				// going up
+				transform.Translate (0f, 0.005f, 0f);
+			} 
+			else 
+			{
+				// going down
+				transform.Translate (0f, -0.01f, 0f);
+			}
+		}
+
+		if (gameObject.transform.position.y >= 0.45) {
+			reachedMaxHeight = true;
+		}
+
+		if (gameObject.transform.position.y <= 0.01) {
+			reachedMaxHeight = false;
+			enabled = false;
 		}
 
 	}
 
-	public bool Deactivate() {
-		if (deactivate) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
 
 
 }
+
