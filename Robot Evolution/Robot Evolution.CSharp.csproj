@@ -73,13 +73,12 @@
     <Compile Include="Assets\Scripts\Button.cs" />
     <Compile Include="Assets\Scripts\ComponentClass.cs" />
     <Compile Include="Assets\Scripts\CraftinPillars.cs" />
-    <Compile Include="Assets\Scripts\Door\Door.cs" />
-    <Compile Include="Assets\Scripts\Door\LeftDScript.cs" />
-    <Compile Include="Assets\Scripts\Door\RightDScript.cs" />
     <Compile Include="Assets\Scripts\EndofLvl.cs" />
     <Compile Include="Assets\Scripts\ExampleScript.cs" />
     <Compile Include="Assets\Scripts\Gate.cs" />
+    <Compile Include="Assets\Scripts\Generators\ObjectGenerator.cs" />
     <Compile Include="Assets\Scripts\GlobalReferences.cs" />
+    <Compile Include="Assets\Scripts\LaserDoor.cs" />
     <Compile Include="Assets\Scripts\Level1.cs" />
     <Compile Include="Assets\Scripts\Level2.cs" />
     <Compile Include="Assets\Scripts\Level3.cs" />
