@@ -4,6 +4,7 @@ using System.Collections;
 public class Button : MonoBehaviour {
 	
 	public EndofLvl currentLvl;
+	public Platform2 deactivate;
 	public int x;
 
 	// Use this for initialization
@@ -19,14 +20,14 @@ public class Button : MonoBehaviour {
 
 	void OnCollisionEnter(Collision activate){
 		
-		Debug.Log ("booom");
 		if (currentLvl.Next () == "Lvl2")
 			x = 2;
 	}
 
 	public int Activate(){
-		return x;
+		if (deactivate.Deactivate ()) 
+		 return 0;
+		else 
+		 return x;
 	}
-
-			
 }

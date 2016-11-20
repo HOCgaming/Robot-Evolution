@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EndofLvl : MonoBehaviour {
+	public class EndofLvl : MonoBehaviour {
 	public int previousLvl;
 
 	// Use this for initialization
