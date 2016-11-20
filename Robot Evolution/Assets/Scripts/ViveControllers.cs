@@ -18,6 +18,8 @@ public class ViveControllers : MonoBehaviour
     public GameObject grabbedObject;
     private ComponentClass component;
 
+	private Vector3 v3Velocity;
+
     void Start()
     {
 
@@ -102,6 +104,16 @@ public class ViveControllers : MonoBehaviour
         }
     }
 
+	private void jamieGetVelocityShizzle(GameObject inputObject)
+	{
+		v3Velocity = inputObject.GetComponent<Rigidbody>().velocity; 
+	}
+
+	private void jamieSetVelocityShizzle(GameObject inputObject)
+	{
+		inputObject.GetComponent<Rigidbody>().velocity = v3Velocity; // = inputObject.GetComponent<Rigidbody>().velocity; 
+	}
+
     private void CheckDropThings()
     {
         if (triggerUp && grabbedObject != null)
@@ -112,9 +124,11 @@ public class ViveControllers : MonoBehaviour
                 //only make the object drop, if no other hand is holding it anymore
                 if (component.handsOnThis.Count < 1)
                 {
+					jamieGetVelocityShizzle (grabbedObject);
                     grabbedObject.transform.parent = null;
                     grabbedObject.GetComponent<Rigidbody>().useGravity = true;
                     grabbedObject.GetComponent<Rigidbody>().isKinematic = false;
+					jamieSetVelocityShizzle (grabbedObject);
                 }
 
                 //forget about it, man.
