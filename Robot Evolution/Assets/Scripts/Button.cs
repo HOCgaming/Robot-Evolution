@@ -30,18 +30,18 @@ public class Button : MonoBehaviour {
 
 		Debug.Log ("booom");
 		counterTime = true;
-		if (currentLvl.Next () == "Lvl2")
+		if (currentLvl.Next () == 2)
 			x = 2;
-		if (currentLvl.Next () == "Lvl3")
+		if (currentLvl.Next () == 3)
 			x = 3;
 	}
 
 	void OnTriggerEnter(Collider triggerBOOM) {
 		Debug.Log ("BOOM MUTHAFUCKA");
 		counterTime = true;
-		if (currentLvl.Next () == "Lvl2")
+		if (currentLvl.Next () == 2)
 			x = 2;
-		if (currentLvl.Next () == "Lvl3")
+		if (currentLvl.Next () == 3)
 			x = 3;
 	}
 

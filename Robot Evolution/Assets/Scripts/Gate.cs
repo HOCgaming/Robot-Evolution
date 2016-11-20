@@ -11,6 +11,8 @@ public class Gate : MonoBehaviour {
 	void Start () {
 		reachedMaxHeight = false;
 		enabled = false;
+
+		Debug.Log (button.Activate ());
 	}
 
 	// Update is called once per frame
@@ -37,22 +39,24 @@ public class Gate : MonoBehaviour {
 			if (reachedMaxHeight == false) 
 			{
 				// going up
-				transform.Translate (0f, 0.005f, 0f);
+				transform.Translate (0f, 0.5f, 0f);
 			} 
 			else 
 			{
 				// going down
-				transform.Translate (0f, -0.01f, 0f);
+				transform.Translate (0f, -0.1f, 0f);
 			}
 		}
 
-		if (gameObject.transform.position.y >= 2.72) {
+		if (gameObject.transform.position.y >= 2.6f) {
 			reachedMaxHeight = true;
 		}
 
-		if (gameObject.transform.position.y <= 1.412) {
+		if (gameObject.transform.position.y <= 1.6f) {
 			reachedMaxHeight = false;
 			enabled = false;
+
+			Debug.Log (button.Activate ());
 		}
 
 	}
