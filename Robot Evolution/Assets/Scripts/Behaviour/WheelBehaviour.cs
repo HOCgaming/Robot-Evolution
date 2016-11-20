@@ -9,7 +9,7 @@ public class WheelBehaviour : MonoBehaviour {
     
 	void Start () {
         rotateAxis = gameObject.transform.forward;
-        rotateSpeed = 5;
+        rotateSpeed = 50;
 
         myComponent = gameObject.GetComponent<ComponentClass>();
 	}
@@ -19,7 +19,7 @@ public class WheelBehaviour : MonoBehaviour {
         if (myComponent.isAttachedToSomething && Input.GetKey(KeyCode.W))
         {
             gameObject.transform.Rotate(rotateAxis, Time.deltaTime * rotateSpeed);
-            GlobalReferences.RobotCentre.GetComponent<Rigidbody>().AddForce(GlobalReferences.RobotCentre.transform.up);
+			GlobalReferences.RobotCentre.GetComponent<Rigidbody>().AddForce(GlobalReferences.RobotCentre.transform.up * rotateSpeed);
         }	    
 	}
 }
