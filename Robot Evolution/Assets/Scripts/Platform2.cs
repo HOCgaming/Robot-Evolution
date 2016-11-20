@@ -4,16 +4,18 @@ using System.Collections;
 public class Platform2 : MonoBehaviour {
 
 	public Button button;
-	public bool MaxHeight;
+	private bool reachedMaxHeight;
+	private bool enabled;
 
 	// Use this for initialization
 	void Start () {
-		MaxHeight = false;
+		reachedMaxHeight = false;
+		enabled = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		/*
 		if (gameObject.transform.position.y >= 0.43f) {
 			MaxHeight = true;
 		}
@@ -23,6 +25,34 @@ public class Platform2 : MonoBehaviour {
 		}
 		if (MaxHeight && gameObject.transform.position.y >= 0.035) {
 			transform.Translate (0f, -0.01f, 0f);
+		}
+		*/
+		if (enabled == false) {
+			if (button.Activate () == 2) {
+				enabled = true;
+			}
+		}
+
+		if (enabled == true) {
+			if (reachedMaxHeight == false) 
+			{
+				// going up
+				transform.Translate (0f, 0.005f, 0f);
+			} 
+			else 
+			{
+				// going down
+				transform.Translate (0f, -0.01f, 0f);
+			}
+		}
+
+		if (gameObject.transform.position.y >= 0.45) {
+			reachedMaxHeight = true;
+		}
+
+		if (gameObject.transform.position.y <= 0.1) {
+			reachedMaxHeight = false;
+			enabled = false;
 		}
 
 	}
