@@ -28,7 +28,7 @@ public class Button : MonoBehaviour {
 
 	void OnCollisionEnter(Collision activate){
 
-		Debug.Log ("booom");
+		//Debug.Log ("booom");
 		counterTime = true;
 		if (currentLvl.Next () == 2)
 			x = 2;
@@ -37,7 +37,7 @@ public class Button : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider triggerBOOM) {
-		Debug.Log ("BOOM MUTHAFUCKA");
+		//Debug.Log ("BOOM MUTHAFUCKA");
 		counterTime = true;
 		if (currentLvl.Next () == 2)
 			x = 2;
