@@ -13,7 +13,7 @@ public class Platform2 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (gameObject.transform.position.y == 0.425f)
+		if (gameObject.transform.position.y >= 0.4f)
 			MaxHeight = true;
 		if ((button.Activate() == 2) && (!MaxHeight))
 			transform.Translate (0f, 0.01f, 0f);
