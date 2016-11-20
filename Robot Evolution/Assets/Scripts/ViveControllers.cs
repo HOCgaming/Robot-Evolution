@@ -11,8 +11,10 @@ public class ViveControllers : MonoBehaviour
 
 	private Valve.VR.EVRButtonId trigger = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
 	private Valve.VR.EVRButtonId grip = Valve.VR.EVRButtonId.k_EButton_Grip;
+    private Valve.VR.EVRButtonId trackPad = Valve.VR.EVRButtonId.k_EButton_SteamVR_Touchpad;
 	private bool triggerDown, triggerUp, triggerPressed;
 	private bool gripDown, gripUp;
+    private bool touchDown;
 
 	private GameObject grabSlot;
 	public GameObject grabbedObject;
@@ -32,19 +34,25 @@ public class ViveControllers : MonoBehaviour
 
 		trackedObj = GetComponent<SteamVR_TrackedObject>();
 
-	}
+    }
 
 	void Update()
 	{
 
 		SetViveInputStates();
+        CheckRespawnCube();
 
 		CheckDisconnectComponents();
 		CheckGrabThings();
-		CheckDropThings();       
+		CheckDropThings();
 
 
-	}
+    }
+
+    private void CheckRespawnCube()
+    {
+        if (touchDown) { GlobalReferences.RobotCentre.transform.position = new Vector3(-6f, 2f, -2.9f); }
+    }
 
 
 
@@ -56,6 +64,8 @@ public class ViveControllers : MonoBehaviour
 
 		gripDown = controller.GetPressDown(grip);
 		gripUp = controller.GetPressUp(grip);
+
+        touchDown = controller.GetPressDown(trackPad);
 	}
 
 	//FOR DISCONNECTING THINGS

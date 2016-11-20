@@ -28,7 +28,7 @@ public class ComponentClass : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Space)) { ReplaceMe(); }
+        //if (Input.GetKeyDown(KeyCode.Space)) { ReplaceMe(); }
 	}
 
     public void ReplaceMe() {

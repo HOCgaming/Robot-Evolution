@@ -17,4 +17,12 @@ public class ObjectSpawner : MonoBehaviour {
         GameObject newObject = Instantiate(inputObject);
         newObject.transform.position = spawnPositions[id].transform.position;
     }
+
+    void Update()
+    {
+        /* if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GlobalReferences.RobotCentre.transform.position = new Vector3(-6.3f, 2f, -2.9f);
+        } */
+    }
 }
