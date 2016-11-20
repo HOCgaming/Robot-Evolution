@@ -48,9 +48,6 @@
      <Compile Include="Assets\Scripts\Button.cs" />
      <Compile Include="Assets\Scripts\ComponentClass.cs" />
      <Compile Include="Assets\Scripts\CraftinPillars.cs" />
-     <Compile Include="Assets\Scripts\Door\Door.cs" />
-     <Compile Include="Assets\Scripts\Door\Part1.cs" />
-     <Compile Include="Assets\Scripts\Door\Part2.cs" />
      <Compile Include="Assets\Scripts\EndofLvl.cs" />
      <Compile Include="Assets\Scripts\ExampleScript.cs" />
      <Compile Include="Assets\Scripts\Gate.cs" />
@@ -58,6 +55,7 @@
      <Compile Include="Assets\Scripts\Level1.cs" />
      <Compile Include="Assets\Scripts\Level2.cs" />
      <Compile Include="Assets\Scripts\Level3.cs" />
+     <Compile Include="Assets\Scripts\Level4.cs" />
      <Compile Include="Assets\Scripts\Main.cs" />
      <Compile Include="Assets\Scripts\Platform2.cs" />
      <Compile Include="Assets\Scripts\VelcroController.cs" />
