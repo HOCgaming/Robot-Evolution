@@ -21,7 +21,7 @@ using System.Collections;
 	// Update is called once per frame
 	void Update ()
 	{
-		Debug.Log (currentLvl);
+		//Debug.Log (currentLvl);
 		if (PillarUp) {
 			pillarscript.pillarUp (0.008f);
 		} else {//if (!PillarUp) 
