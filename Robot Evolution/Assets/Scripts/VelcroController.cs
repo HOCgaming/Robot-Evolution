@@ -68,8 +68,14 @@ public class VelcroController : MonoBehaviour
 
     void VelcroThemToUs(GameObject connectObject, ComponentClass connectComponent, GameObject velcro)
     {        
-        connectObject.GetComponent<Rigidbody>().useGravity = false;
-        connectObject.GetComponent<Rigidbody>().isKinematic = true;
+
+		if (connectObject.GetComponent<Rigidbody> () != null) {
+			connectObject.GetComponent<Rigidbody>().useGravity = false;
+			connectObject.GetComponent<Rigidbody>().isKinematic = true;
+		} else if (debug) {
+			Debug.LogWarning (connectObject.name + " does not have a rigidbody!");
+		}
+        
         connectObject.transform.parent = myObject.transform;
         connectComponent.isAttachedToSomething = true;
         
@@ -85,6 +91,15 @@ public class VelcroController : MonoBehaviour
         //SnapToCORRECTPosition(connectObject, velcro);
 
         if (debug) { Debug.Log(myObject.name + " has connected " + connectObject.name + " to itself."); }
+
+		//THIS COULD KILL EVERYTHING
+		//BEWARE
+		//ERRORS INBOUND:
+		Destroy(connectObject.GetComponent<Rigidbody>());
+		if (debug) {
+			Debug.LogWarning ("DESTROYED " + connectObject.name + "'s RIGIDBODY!");
+		}
+ 
     }
 
     void SnapToCORRECTPosition(GameObject theirObject, GameObject theirVelcro)
