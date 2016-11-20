@@ -1,15 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ForceGen.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ViveControllers.cs">
     <Files>
-      <File FileName="Assets\Scripts\Main.cs" Line="30" Column="1" />
+      <File FileName="Assets\Scripts\Main.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Generators\ObjectGenerator.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CraftinPillars.cs" Line="19" Column="48" />
-      <File FileName="Assets\Scripts\EndofLvl.cs" Line="9" Column="18" />
-      <File FileName="Assets\Scripts\Level3.cs" Line="18" Column="47" />
-      <File FileName="Assets\ForceGen.cs" Line="1" Column="3" />
-      <File FileName="Assets\Scripts\GlobalReferences.cs" Line="6" Column="29" />
-      <File FileName="Assets\Scripts\Behaviour\WheelBehaviour.cs" Line="49" Column="4" />
+      <File FileName="Assets\Scripts\CraftinPillars.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\EndofLvl.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Level3.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GlobalReferences.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Behaviour\WheelBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ViveControllers.cs" Line="244" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
