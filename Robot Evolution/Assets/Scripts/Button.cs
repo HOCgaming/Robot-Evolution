@@ -32,6 +32,8 @@ public class Button : MonoBehaviour {
 		counterTime = true;
 		if (currentLvl.Next () == "Lvl2")
 			x = 2;
+		if (currentLvl.Next () == "Lvl3")
+			x = 3;
 	}
 
 	public int Activate(){
